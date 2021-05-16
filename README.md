@@ -1,4 +1,4 @@
-# Workspaces in Terraform
+# Terraform workspaces
 
 Workspaces that we used before was a default workspace, but we can create our own custom workspace using terraform workspace commands:
 
