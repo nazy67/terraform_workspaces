@@ -5,6 +5,5 @@ terraform {
   region = "us-east-1"
   dynamodb_table = "terraform-state-locks"
   workspace_key_prefix = "workspace-prefix"
-  
   } 
 }
