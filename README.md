@@ -86,6 +86,6 @@ A common use for workspaces you use the parallel copy of your infrastructure  fo
 
 - Before you do any thing while you worknig on workspaces always check which environment you are working on by running command ```terraform workspace list``` or show, just to make sure where you are deploying your resources.
 
-- You can not delete your workspace while you are inside of it.W
+- You can not delete your workspace while you are inside of it.
 
 - If you leave workspace_prefix in your backend file, and you are not working with workspaces, it won't do anything when you provision your resources.
