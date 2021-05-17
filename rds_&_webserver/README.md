@@ -20,7 +20,8 @@ source = "../../../aws_terraform_modules/modules/web_server"
 
 both will work. Webserver child module has a remote_state.tf file where I give the description of rds.tfstate file, which I want to use to retrive a data from rds state file such as address (endpoint) and username of database user. I used the data source for rds.tfstate file in webserver child module, but in webserver root module  I faced an issue, terraform couldn't find rds.tfstate in a refered s3 bucket. To solve that, I have to give a full path to that rds.tfstate file (it is shown below), when I worked with folder structure for environment isolation I just had to pass the name of tf.state file. Terraform workspace in this case behaves different and giving a full path to rds.tfstate file is the fixed the issue.
 
-You can either do it from the state file, but just key values, because this resources will be created and the names will be known after the creation in the next line of code can show it better: 
+You can either do it from the state file, but just key values, because this resources will be created and the names will be known after the creation in the next line of code can show it better:
+
 ```
 data "terraform_remote_state" "rds" {
   backend = "s3"
@@ -35,7 +36,7 @@ data "terraform_remote_state" "rds" {
  ```
   remote_state = {
      bucket = "terraform-nazy-state"
-     key = "rds.tfstate"
+     key    = "rds.tfstate"
      region = "us-east-1"
      workspace_key_prefix = "ws-homework"
   } 
@@ -43,6 +44,7 @@ data "terraform_remote_state" "rds" {
 
  ```
  Or we can change it on root webserver module:
+
  ```
   remote_state = {
      bucket = "terraform-nazy-state"
@@ -52,13 +54,15 @@ data "terraform_remote_state" "rds" {
   } 
 }
  ```
+
  and child webserver module data remote_state file will look in the next code:
+
  ```
  data "terraform_remote_state" "rds" {
   backend = "s3"
   config = {
     bucket =   var.remote_state["bucket"]
-    key = var.remote_state["key"]
+    key    = var.remote_state["key"]
     region = var.remote_state["region"]
  }                                                                      
 }
