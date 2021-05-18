@@ -63,4 +63,10 @@ in this case root webserver module will look like this:
      workspace_key_prefix = "ws-homework"
   } 
 }
- ```
+```
+
+## Notes 
+
+- Before you do anything make sure to check which workspace you are working on, by running command terraform workspace show.
+
+- The rds backend has to be created first, since we want to read from it remote state file.
