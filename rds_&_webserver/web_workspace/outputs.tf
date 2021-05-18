@@ -16,3 +16,11 @@ output "web_alb_arn" {
   value       = module.webserver_module.module_web_alb_arn
   description = "webserver's load balancer arn"
 }
+
+// output "rds_username" {
+//   value = module.webserver_module.rds_username
+// }
+
+// output "rds_endpoint" {
+//   value = module.webserver_module.rds_address
+// }
